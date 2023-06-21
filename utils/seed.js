@@ -1,6 +1,9 @@
+
+
 const connection = require('../config/connection');
 const { Thought, User } = require('../models');
-const { getRandomUsername, getRandomReactions } = require('./data');
+const { username, getRandomReactions, statments } = require('./data');
+
 connection.on('error', (err) => err);
 connection.once('open', async () => {
     console.log('connected');
@@ -10,45 +13,44 @@ connection.once('open', async () => {
     await User.deleteMany({});
     // Create empty array to hold the users
     const users = [];
-    // Loop 17 times -- add users to the users array
-    const usedUsernames = new Set();
+    // Loop through the usernames and create users
+    for (let i = 0; i < username.length; i++) {
+        const user = {
+            username: username[i],
+            email: `${username[i].replace(/\s/g, '').toLowerCase()}@gmail.com`,
+            thoughts: statments[i],
+            friends: [],
+        };
+        users.push(user);
+    }
 
-    for (let i = 0; i < 15; i++) {
-        // Get some random reaction objects using a helper function that we imported from ./data
-        const reactions = getRandomReactions(15);
-        let username = getRandomUsername();
-        let email = username.split(' ')[0];
-
-        // Check if the username is already used
-        while (usedUsernames.has(username)) {
-            username = getRandomUsername();
-        }
-
-        usedUsernames.add(username);
+    // Add users to the collection and await the results
+    await User.collection.insertMany(users);
 
 
-        users.push({
-            username,
-            email,
+    const thoughts = [];
 
+    for (let i = 0; i < username.length; i++) {
+        const thoughtText = statments[i];
+        const createdAt = new Date();
+        const reactions = getRandomReactions(4);
+
+        thoughts.push({
+            thoughtText,
+            createdAt,
+            username: username[i],
             reactions,
         });
     }
-    // Add users to the collection and await the results
-    await User.collection.insertMany(users);
+
+
     // Add Thoughts to the collection and await the results
-    await Thought.collection.insertOne({
-        thoughtName: 'Practice makes man perfect',
-        inPerson: false,
-        users: [...users],
-    });
+    await Thought.collection.insertMany(thoughts);
     // Log out the seed data to indicate what should appear in the database
     console.table(users);
     console.info('Seeding complete!');
     process.exit(0);
 });
-
-
 
 
 

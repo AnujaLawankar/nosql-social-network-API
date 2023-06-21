@@ -1,3 +1,5 @@
+
+
 const username = [
     'Anuja',
     'Shobha',
@@ -15,34 +17,27 @@ const username = [
     'Nathaniel',
     'Parker',
 ];
-const comments = [
-    'Excellent',
-    'Good',
-    'Worst',
-    'Bad',
+
+const comments = ['Excellent', 'Good', 'Worst', 'Bad'];
+
+const statments = ["Time is money", "Slow and steady wins the race", "Do one thing every day that scares you.", "It's no use going back to yesterday, because I was a different person then.", "Everything you can imagine is real", "Do what you feel in your heart to be right―for you'll be criticized anyway.", "Practice makes man perfect"
+
 ];
 
-//get a random item given an array
 const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-//get a random username
+// Function to generate random reactions
 
-const getRandomUsername = () => {
-    const uniqueIdentifier = Math.floor(Math.random() * 1000); // Generate a random number between 0 and 999
-    return `${getRandomArrItem(username)}${uniqueIdentifier} ${getRandomArrItem(username)}`;
-};
-
-//// Function to generate random reactions that we can add to thought object.
-const getRandomReactions = (int) => {
+const getRandomReactions = (numReactions) => {
     const results = [];
-    for (let i = 0; i < int; i++) {
-        results.push({
+    for (let i = 0; i < numReactions; i++) {
+        const reaction = {
             reactionName: getRandomArrItem(comments),
             score: Math.floor(Math.random() * (99 - 70 + 1) + 70),
-        });
+        };
+        results.push(reaction);
     }
     return results;
 };
 
-// Export the functions for use in seed.js
-module.exports = { getRandomUsername, getRandomReactions };
+module.exports = { username, getRandomReactions, statments };

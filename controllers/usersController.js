@@ -17,7 +17,19 @@ module.exports = {
     //get all users
     getUsers(req, res) {
 
-        User.find()
+        User.find().populate(
+            {
+
+                path: 'thoughts',
+                options: { sort: { createdAt: -1 } },
+                populate: {
+                    path: 'reactions',
+                    model: 'reaction',
+                    select: '-__v',
+                },
+
+
+            }).populate('friends', '-__v')
             .then(async (users) => {
 
                 const userObj = {
@@ -50,7 +62,8 @@ module.exports = {
             return res.status(400).json({ message: 'Invalid user ID' });
         }
 
-        User.findOne({ _id: userId })
+        // TODO: populate thooughts and friends
+        User.findOne({ _id: userId }).populate("thoughts").populate("friends")
             .select('-_v')
             .then((user) => {
                 if (!user) {
@@ -78,8 +91,8 @@ module.exports = {
     deleteUser(req, res) {
 
         User.findOneAndRemove({ _id: req.params.userId })
-            .then((user) =>
-                !user
+            .then((user) => {
+                return !user
                     ? res.status(404).json({ message: 'No sunch user exists' })
                     : Thought.findOneAndUpdate(
                         { users: req.params.userId },
@@ -90,7 +103,8 @@ module.exports = {
                         },
                         { new: true }
 
-                    ))
+                    )
+            })
             .then((thought) =>
                 !thought
                     ? res.status(404).json({
@@ -141,7 +155,7 @@ module.exports = {
         console.log(req.body);
         User.findOneAndUpdate(
             { _id: req.params.userId },
-            { $addToSet: { users: req.body } },
+            { $addToSet: { friends: req.params.friendId } },
             { runValidators: true, new: true }
         )
             .then((user) =>
@@ -157,7 +171,7 @@ module.exports = {
     removeFriend(req, res) {
         User.findOneAndUpdate(
             { _id: req.params.userId },
-            { $pull: { user: { friendId: req.params.friendId } } },
+            { $pull: { friends: req.params.friendId } },
             { runValidators: true, new: true }
         )
             .then((user) =>
