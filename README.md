@@ -65,7 +65,7 @@ Here, you can find the walkthrough video of "Nosql-social-network-API" here:-
 
 Here, you can find the GitHub URL:-
 
-
+https://github.com/AnujaLawankar/nosql-social-network-API
 
 
 ## Installation
@@ -92,34 +92,48 @@ The MongoDb compass having all collections
 
 1. To GET all users.
 
-![Website](./assets/images/screenshotnew1.png)
+![Website](./assets/images/screeenshot1.png)
 
 
 2. To GET user by id.
+![Website](./assets/images/screeenshot2.png)
 
 3. To CREATE a user.
+![Website](./assets/images/screeenshot3.png)
 
 4. To UPDATE a user by id
+![Website](./assets/images/screeenshot4.png)
 
 5. To DELETE a user by id.
+![Website](./assets/images/screeenshot5.png)
+
 
 6. To add friend with user.
+![Website](./assets/images/screeenshot13.png)
 
 7. To remove a friend from user.
+![Website](./assets/images/screeenshot14.png)
 
 8. To GET all thoughts.
+![Website](./assets/images/screeenshot6.png)
 
 9. To GET thought by id.
+![Website](./assets/images/screeenshot7.png)
 
 10. To CREATE a thought.
+![Website](./assets/images/screeenshot8.png)
 
 11. To UPDATE a thought by id
+![Website](./assets/images/screeenshot9.png)
 
 12. To DELETE a thought by id.
+![Website](./assets/images/screeenshot10.png)
 
 13. To add reaction with thought.
+![Website](./assets/images/screeenshot11.png)
 
 14. To remove a reaction from thought.
+![Website](./assets/images/screeenshot12.png)
 
 
 
