@@ -41,17 +41,7 @@ module.exports = {
 
             });
     },
-    //delete thought
-    // deleteThought(req, res) {
-    //     Thought.findOneAndRemove({ _id: req.params.thoughtId })
-    //         .then((thought) =>
-    //             !thought
-    //                 ? res.status(404).json({ message: 'No thought with that ID' })
-    //                 : User.deleteMany({ _id: { $in: thought.users } }))
-    //         .then(() => estimatedDocumentCount.json({ message: 'Thought and users deleted' }))
-    //         .catch((err) => res.status(500).json(err));
 
-    // },
 
     // delete thought
     deleteThought(req, res) {
@@ -62,7 +52,7 @@ module.exports = {
                 }
                 return User.updateMany(
                     { _id: { $in: thought.users } },
-                    { $pull: { thoughts: req.params.thoughtId } }
+                    { $pull: { thought: req.params.thoughtId } }
                 );
             })
             .then(() => {
