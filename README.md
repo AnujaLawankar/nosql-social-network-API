@@ -60,7 +60,7 @@ THEN user will able to successfully create and delete reactions to thoughts and 
 ## URLs:-
 Here, you can find the walkthrough video of "Nosql-social-network-API" here:- 
 
-https://drive.google.com/file/d/1C2xQiTBML1Smlbzo1gskzcLlVpj9DJaR/view
+https://drive.google.com/file/d/1HQVLVtAyKbtLWpaIDVJl3QHDc7iNSrjb/view
 
 
 
