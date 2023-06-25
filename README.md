@@ -136,7 +136,11 @@ The MongoDb compass having all collections
 14. To remove a reaction from thought.
 ![Website](./assets/images/screeenshot12.png)
 
+15. MongoDB database for thoughts
+![Website](./assets/images/screeenshotdb1.png)
 
+16. MongoDB database for users
+![Website](./assets/images/screeenshotdb2.png)
 
 
 ## License
