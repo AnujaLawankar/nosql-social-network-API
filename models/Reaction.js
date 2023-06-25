@@ -12,7 +12,7 @@ const reactionSchema = new Schema(
 
             type: String,
             required: true,
-            maxlenght: 280
+            maxLength: 280
 
         },
 
@@ -21,10 +21,10 @@ const reactionSchema = new Schema(
             required: true
         },
 
-        createAt: {
+        createdAt: {
             type: Date,
             default: Date.now,
-
+            get: (timestamp) => timestamp.toLocaleString()
         },
     },
     {

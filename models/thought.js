@@ -18,8 +18,8 @@ const thoughtSchema = new Schema(
         createdAt: {
 
             type: Date,
-            default: Date.now
-
+            default: Date.now,
+            get: (timestamp) => timestamp.toLocaleDateString()
         },
         username: {
 
@@ -38,11 +38,6 @@ const thoughtSchema = new Schema(
         id: false
     }
 );
-thoughtSchema.virtual('formattedCreatedAt').get(function () {
-
-    return this.createdAt.toLocaleDateString();
-
-});
 
 // Define a virtual property 'friendCount' to retrieve the length of the user's friends array field on query.
 thoughtSchema.virtual('reactionCount').get(function () {
@@ -51,6 +46,6 @@ thoughtSchema.virtual('reactionCount').get(function () {
 
 
 
-const Thought = model('thought', thoughtSchema);
+const Thought = model('Thought', thoughtSchema);
 
 module.exports = Thought;
